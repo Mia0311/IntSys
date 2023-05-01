@@ -1,2 +1,3 @@
-Sheep Rescue game \n
+Sheep Rescue game
+
 The game has been completed up to the slides. It has also been added some visual (heart), sound and title scene.
