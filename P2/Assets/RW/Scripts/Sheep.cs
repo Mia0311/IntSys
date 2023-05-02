@@ -9,6 +9,7 @@ public class Sheep : MonoBehaviour
     public float dropDestroyDelay;
     public float heartOffset;
     public GameObject heartPrefab;
+    public float hasDropped;
     private bool hitByHay;
     private Collider myCollider;
     private Rigidbody myRigidbody;
@@ -60,13 +61,18 @@ public class Sheep : MonoBehaviour
 
     private void Drop()
     {
-        GameStateManager.Instance.DroppedSheep();
-        sheepSpawner.RemoveSheepFromList(gameObject);
-        myRigidbody.isKinematic = false;
-        myCollider.isTrigger = false;
-        Destroy(gameObject, dropDestroyDelay);
-       
-        SoundManager.Instance.PlaySheepDroppedClip();
+        if (hasDropped == 0)
+        {
+            GameStateManager.Instance.DroppedSheep();
+            sheepSpawner.RemoveSheepFromList(gameObject);
+            myRigidbody.isKinematic = false;
+            myCollider.isTrigger = false;
+            Destroy(gameObject, dropDestroyDelay);
+        
+            SoundManager.Instance.PlaySheepDroppedClip();
+            hasDropped = 1;
+        }
+        
         
     }
 
